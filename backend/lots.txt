@@ -1,0 +1,229 @@
+A
+AA
+B
+BB
+C1
+C2
+CC
+DD
+E
+ERC
+F
+FF
+G
+GG
+GG2
+HC
+HH
+II
+J
+JJ1
+JJ3
+K
+KK
+L
+LL
+Lot 10a
+Lot 11b
+Lot 15
+Lot 16a
+Lot 16b
+Lot 16f
+Lot 17a
+Lot 17b
+Lot 17c
+Lot 17d
+Lot 19
+Lot 1b
+Lot 1c
+Lot 1d
+Lot 1e
+Lot 1f
+Lot 2a
+Lot 2b
+Lot 2f
+Lot 3 (NEW)
+Lot 3 (OLD)
+Lot 4a
+Lot 4b
+Lot 4h
+Lot 4k
+Lot 4m
+Lot 4n
+Lot 6
+Lot 8
+Lot 9b
+Lot V
+R2
+MM
+Meter/Pay Station Area
+Motorcycle
+Mowatt Lane Garage
+Mowatt Visitor
+N1/4/6/8/9
+N3/7
+N5
+NN
+O1/3
+O5
+P
+PH1
+PH2
+Q
+Q1
+QQ
+R
+RR
+Regents Drive Garage
+S3/4
+S7/8
+S9
+SA
+SDG
+SDStar
+SS
+Stadium Drive Garage
+Student Summer
+T
+TT
+TV
+U1
+U2
+UU
+Union Lane Garage
+V
+VM
+W
+W2
+X
+XX
+Xfinity Visitor Lot
+Y
+YC
+YY
+Z
+A.V. Williams Bldg
+Administrative Bldg
+Allegany Hall
+Alumni Center
+Animal Science Bldg
+Annapolis Hall
+Anne Arundel Hall
+Baltimore Hall
+Bel Air Hall
+Benjamin Bldg
+Biology Psychology Bldg
+Bioscience Research Bldg
+Calvert Hall
+Campus Drive
+Carroll Hall
+Cecil Hall
+Centreville Hall
+Chapel Hill
+Chapel Meters
+Charles Hall
+Chemistry Bldg
+Chesapeake Bldg
+Chestertown Hall
+Clarice Smith Center
+Cole Field House
+Commons 1
+Commons 2
+Commons 3
+Commons 4
+Commons 5
+Commons 6
+Commons 7
+Computer Science Bldg
+Courtyards
+Cumberland Hall
+Denton Hall
+Dorchester Hall
+Easton Hall
+Edward St. John Bldg
+Elkton Hall
+Ellicott Hall
+Ellicott Visitor
+Francis Scott Key Hall
+Frederick Hall
+Garrett Hall
+Geology Bldg
+Glenn Martin Hall
+H. J. Patterson Hall
+Hagerstown Hall
+Harford Hall
+Health Center
+Hornbake Library
+Howard Hall
+J. M. Patterson Bldg
+Jimenez Hall
+Kim Engineering Bldg
+LaPlata Hall
+Lee Bldg
+Leonardtown
+Library Lane
+Lot 12A
+Lot 14A
+Lot 14B
+Lot 14C
+Lot 22B
+Lot 22C
+Lot 24D
+Marie Mount Hall
+Maryland Stadium
+McKeldin Library
+Mitchell Bldg
+Montgomery Hall
+Morrill Hall
+Mowatt Lane
+North Gym
+Nyumburu Culture Center
+Oakland Hall
+P. Mitchell Art/Soc Bldg
+Paint Branch Drive
+Patuxent Bldg
+Physical Science Technology
+Plant Sciences Bldg
+Pocomoke Bldg
+Preinkert Field House
+Prince Frederick Hall
+Pyon-Chen
+Queen Anne's Hall
+Regents Drive
+Ritchie Colliseum
+Rossborough Drive
+Rossborough Inn
+Rossborough Lane
+SCUB 1
+SCUB 2
+SCUB 3
+SCUB 4
+SPH
+School of Public Health
+Seneca Bldg
+Severn Bldg
+Shipley Field
+Shoemaker Bldg
+Skinner Bldg
+Somerset Hall
+St. Mary's Hall
+Stadium Concourse
+Stadium Drive
+Stamp Student Union
+Susquehanna Hall
+Symons Hall
+Systems Administration Bldg
+Taliaferro Hall
+Tawes Hall
+Technology Drive
+Terrrapin Trail Garage
+Turner Hall
+Union Lane
+Valley Drive
+Van Munching Hall
+Visitor Center
+Washington Hall
+Wicomico Hall
+Woods Hall
+Worchester Hall
+Young Children Center
