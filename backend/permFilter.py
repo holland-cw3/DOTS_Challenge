@@ -2,8 +2,8 @@ import pandas as pd
 from datetime import datetime
 
 # for testing
-date = '3/8/2024'
-time = '22:00'
+date = '3/6/2024'
+time = '12:00'
 permissions = ['Lot 1']
 
 date = pd.to_datetime(date)
@@ -54,9 +54,6 @@ def permFilter(date, time, lots, permissions):
         # check if one of the lot permissions is allowed for this lot
         allowedToPark = False
         for perm in permissions:
-            # check if permission is allowed
-            if row[perm] == 1.0:
-                allowedToPark = True
             # check if lot is unrestricted
             if row['Enforcement Days'] != 'Always':
                 # save lot times
@@ -71,6 +68,10 @@ def permFilter(date, time, lots, permissions):
                     # if lot is enforced on weekends and its a weekday or outisde the enforcement time, parking is allowed
                     if date.weekday() < 5 or (date.weekday() > 5 and is_time_outside_interval(time, start_time, end_time)):
                         allowedToPark = True
+            # if it is currently a restricted time only add the lot if you have permissions for it
+            if (not allowedToPark):
+                if row[perm] == 1.0:
+                    allowedToPark = True
 
 
         # if permissions are valid for this lot, add it to allowed
