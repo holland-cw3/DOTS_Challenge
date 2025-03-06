@@ -1,1 +1,0 @@
-# DOTS_Challenge

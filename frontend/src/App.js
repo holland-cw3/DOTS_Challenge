@@ -3,6 +3,12 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "./App.css";
 import map from './map.png'
 
+
+
+
+
+
+
 function App() {
   return (
     <div>

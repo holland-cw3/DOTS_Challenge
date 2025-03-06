@@ -14,9 +14,9 @@ with open('lots.txt', 'r') as file:
     lines = file.read().splitlines() 
     lots.extend(lines) 
 
+print(lots)
 
 
-
-print(len(lots))
-print(len(specialFilter(date, lots)))
-print(specialFilter(date, lots))
+# print(len(lots))
+# print(len(specialFilter(date, lots)))
+# print(specialFilter(date, lots))
