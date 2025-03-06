@@ -16,6 +16,9 @@ with open('backend/lots.txt', 'r') as file:
 
 def permFilter(date, time, lots, permissions):
 
+    if (len(permissions) == 0):
+        permissions.add('No Permits')
+
     df_perms = pd.read_csv('backend/InfoChallenge Dataset_ DOTS - Lots & Permissions.csv')
     
     # function to determine if time is outside of checked inerval
@@ -47,7 +50,6 @@ def permFilter(date, time, lots, permissions):
     # traverse the lots in the csv file, this is every lot
     # check the end boolean section of csv, to check if permission allow the lot
     for index, row in df_perms.iterrows():
-        print(f"Row {index}: {row[permissions[0]]}")  # Replace 'column_name' with an actual column name
 
         # check if one of the lot permissions is allowed for this lot
         allowedToPark = False
