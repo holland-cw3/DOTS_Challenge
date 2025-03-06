@@ -25,7 +25,7 @@ def filter (date, lots):
         return lots
     else:
         # filter permissions
-        lots = permFilter(date, time, lots)
+        lots = permFilter(date, time, lots, permissions)
     return lots
 
 
