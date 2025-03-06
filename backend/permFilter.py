@@ -2,8 +2,8 @@ import pandas as pd
 from datetime import datetime
 
 # for testing
-date = '1/1/2024'
-time = '03:00'
+date = '3/8/2024'
+time = '22:00'
 permissions = ['Lot 1']
 
 date = pd.to_datetime(date)
@@ -75,10 +75,12 @@ def permFilter(date, time, lots, permissions):
 
         # if permissions are valid for this lot, add it to allowed
         if (allowedToPark):
-            # check other requirements here
             allowed_lots.add(row['Parking Lot / Zone Name'])
 
-            # check time and date restrictions
+        # due to multiple entires a lot may be allowed from one rule but not another
+        # if there is a rule that means you cant park in the lot, remove it from set
+        if (not allowedToPark and (row['Parking Lot / Zone Name'] in allowed_lots)):
+            allowed_lots.remove(row['Parking Lot / Zone Name'])
     
     return allowed_lots
 
