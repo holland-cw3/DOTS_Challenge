@@ -22,10 +22,13 @@ def specialFilter(date, lots):
             start, end = range
             if start <= date <= end:
                 return events_hashmap[range]
-            else:
-                return None
+        
+        return None
 
 
     target = special_event_and_cons_check(date)
 
-    return list(filter(lambda x: x is not target['Affected Lot/Populations'], lots))
+
+    return list(filter(lambda x: x is not target['Affected Lot/Populations'], lots)) if target else lots
+    
+     

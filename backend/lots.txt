@@ -23,37 +23,36 @@ K
 KK
 L
 LL
-Lot 10a
-Lot 11b
-Lot 15
-Lot 16a
-Lot 16b
-Lot 16f
-Lot 17a
-Lot 17b
-Lot 17c
-Lot 17d
-Lot 19
-Lot 1b
-Lot 1c
-Lot 1d
-Lot 1e
-Lot 1f
-Lot 2a
-Lot 2b
-Lot 2f
-Lot 3 (NEW)
-Lot 3 (OLD)
-Lot 4a
-Lot 4b
-Lot 4h
-Lot 4k
-Lot 4m
-Lot 4n
-Lot 6
-Lot 8
-Lot 9b
-Lot V
+10a
+11b
+15
+16a
+16b
+16f
+17a
+17b
+17c
+17d
+19
+1b
+1c
+1d
+1e
+1f
+2a
+2b
+2f
+3
+4a
+4b
+4h
+4k
+4m
+4n
+6
+8
+9b
+V
 R2
 MM
 Meter/Pay Station Area
@@ -162,13 +161,13 @@ LaPlata Hall
 Lee Bldg
 Leonardtown
 Library Lane
-Lot 12A
-Lot 14A
-Lot 14B
-Lot 14C
-Lot 22B
-Lot 22C
-Lot 24D
+12A
+14A
+14B
+14C
+22B
+22C
+24D
 Marie Mount Hall
 Maryland Stadium
 McKeldin Library

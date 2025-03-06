@@ -1,31 +1,45 @@
-from fastapi import FastAPI
-# import pandas as pd
-# from specialFilter import specialFilter
-# from semesterFilter import semesterFilter
+from flask import Flask
+from flask_restful import Resource, Api
+import pandas as pd
+from specialFilter import specialFilter
+from semesterFilter import semesterFilter
+from permFilter import permFilter
 
-# date = '1/3/2023'
-# time = '03:00'
-# visitorType = 'Student'
-# permissions = []
+date = '1/1/2024'
+time = '03:00'
+permissions = []
 
-# date = pd.to_datetime(date)
+date = pd.to_datetime(date)
 
-
-# Read in all the parking lots
-# lots = []
-# with open('lots.txt', 'r') as file:
-#     lines = file.read().splitlines() 
-#     lots.extend(lines) 
-
-
-# lots2 = specialFilter(date, lots)
-# lots = semesterFilter(date, lots)
+lots = []
+with open('lots.txt', 'r') as file:
+    lines = file.read().splitlines() 
+    lots.extend(lines) 
 
 
-app = FastAPI()
+def filter (date, lots):
+    lots = specialFilter(date, lots)
+    lots, perms = semesterFilter(date, lots)
+    if perms == False:
+        print(lots)
+        return lots
+    else:
+        # filter permissions
+        lots = permFilter(date, time, lots)
+    return lots
 
 
+lots = filter(date, lots)
 
-@app.get("/")
-def health():
-    return {"message": "Hello World"}
+app = Flask(__name__)
+api = Api(app)
+
+class GetItems(Resource):
+    def get(self):
+        return {'Lots': lots}
+
+api.add_resource(GetItems, '/')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
