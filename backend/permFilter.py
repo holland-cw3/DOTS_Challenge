@@ -2,25 +2,26 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # for testing
-# date = '3/6/2025'
-# time = '11:00'
-# permissions = ['Everyone']
+date = '3/4/2025'
+time = '16:00'
+permissions = ['Lot 1']
 
-# date = pd.to_datetime(date)
+date = pd.to_datetime(date)
 
-# lots = []
+lots = []
 
-# with open('backend/lots.txt', 'r') as file:
-#     lines = file.read().splitlines() 
-#     lots.extend(lines)
+with open('backend/lots.txt', 'r') as file:
+    lines = file.read().splitlines() 
+    lots.extend(lines)
 # end testing data
 
 def permFilter(date, time, lots, permissions):
 
     print("Day of the week?: ", date.weekday())
 
-    if (len(permissions) == 0):
-        permissions.add('Everyone')
+    permissions.append('Everyone')
+
+    lots = set(lots)
 
     df_perms = pd.read_csv('backend/InfoChallenge Dataset_ DOTS - Lots & Permissions.csv')
     
@@ -43,8 +44,8 @@ def permFilter(date, time, lots, permissions):
     # use a set to store the allowed lots
     allowed_lots = set([])
 
-    # check what lots are valid with no permissions
-    # return them here
+    # use a set to store the lots that can't be used
+    restricted_lots = set([])
 
     # traverse the lots in the csv file, this is every lot
     # check the end boolean section of csv, to check if permission allow the lot
@@ -52,6 +53,8 @@ def permFilter(date, time, lots, permissions):
 
         # check if one of the lot permissions is allowed for this lot
         allowedToPark = False
+
+        blockedFromLot = False
 
         if row['Permits Type (Category)'] == 'Metered Parking':
             allowedToPark = True
@@ -65,7 +68,12 @@ def permFilter(date, time, lots, permissions):
             if date.weekday() < 5 and is_time_inside_interval(time, start_time, end_time):
                 for perm in permissions:
                     if row[perm] == 1.0:
-                        allowedToPark = True
+                        allowed_lots.add(row['Parking Lot / Zone Name'])
+                        if (row['Parking Lot / Zone Name'] in restricted_lots):
+                            restricted_lots.remove(row['Parking Lot / Zone Name'])
+                    else:
+                        if (not row['Parking Lot / Zone Name'] in allowed_lots):
+                            restricted_lots.add(row['Parking Lot / Zone Name'])
             elif row['Posted Restrictions'] == "Unrestricted after 4PM":
                 allowedToPark = True
         elif row['Enforcement Days'] == 'Weekends':
@@ -73,28 +81,33 @@ def permFilter(date, time, lots, permissions):
             if date.weekday() >= 5 and is_time_inside_interval(time, start_time, end_time):
                 for perm in permissions:
                     if row[perm] == 1.0:
-                        allowedToPark = True
+                        allowed_lots.add(row['Parking Lot / Zone Name'])
+                        if (row['Parking Lot / Zone Name'] in restricted_lots):
+                            restricted_lots.remove(row['Parking Lot / Zone Name'])
+                    else:
+                        if (not row['Parking Lot / Zone Name'] in allowed_lots):
+                            restricted_lots.add(row['Parking Lot / Zone Name'])
         else:
             # rule always applys
             for perm in permissions:
                 if row[perm] == 1.0:
-                    allowedToPark = True
+                    allowed_lots.add(row['Parking Lot / Zone Name'])
+                    if (row['Parking Lot / Zone Name'] in restricted_lots):
+                        restricted_lots.remove(row['Parking Lot / Zone Name'])
+                else:
+                    if (not row['Parking Lot / Zone Name'] in allowed_lots):
+                        restricted_lots.add(row['Parking Lot / Zone Name'])
 
+    if date.weekday() >= 5 or not is_time_inside_interval(time, "7:00:01", "15:59:59"):
+        return lots - restricted_lots
+    else:
+        return allowed_lots
 
-        # if permissions are valid for this lot, add it to allowed
-        if (allowedToPark):
-            allowed_lots.add(row['Parking Lot / Zone Name'])
-
-        if (row['Posted Restrictions'] == "Unrestricted after 4PM" and not allowedToPark and (row['Parking Lot / Zone Name'] in allowed_lots)):
-            allowed_lots.remove(row['Parking Lot / Zone Name'])
-    
-    # return the lots that are valid
-    return allowed_lots.intersection(set(lots))
 
 # For testing:
-# final_lots = permFilter(date, time, lots, permissions)
+final_lots = permFilter(date, time, lots, permissions)
 
-# print(len(final_lots))
+print(len(final_lots))
 
-# for lot in final_lots:
-#     print(lot)
+for lot in final_lots:
+    print(lot)
