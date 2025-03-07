@@ -85,7 +85,7 @@ def permFilter(date, time, lots, permissions):
         if (allowedToPark):
             allowed_lots.add(row['Parking Lot / Zone Name'])
 
-        if (not allowedToPark and (row['Parking Lot / Zone Name'] in allowed_lots)):
+        if (row['Posted Restrictions'] == "Unrestricted after 4PM" and not allowedToPark and (row['Parking Lot / Zone Name'] in allowed_lots)):
             allowed_lots.remove(row['Parking Lot / Zone Name'])
     
     # return the lots that are valid
