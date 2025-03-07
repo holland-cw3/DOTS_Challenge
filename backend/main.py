@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Resource, Api
 import pandas as pd
 from specialFilter import specialFilter
@@ -36,10 +36,17 @@ api = Api(app)
 
 class GetItems(Resource):
     def get(self):
-        return {'Lots': lots}
+        date = request.args.get('date')
+        time = request.args.get('time')
+        permissions = request.args.getlist('permissions')  # Gets array from query string
+        
+        date = pd.to_datetime(date)
+      
+        filtered_lots = filter(date, time, lots, permissions)
+        
+        return {'Lots': filtered_lots}
 
 api.add_resource(GetItems, '/')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
