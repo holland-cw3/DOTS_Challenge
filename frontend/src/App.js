@@ -9,6 +9,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import axios from "axios";
+
 
 import { useState, useEffect } from "react";
 
@@ -33,7 +35,31 @@ const paginationModel = { page: 0, pageSize: 5 };
 export default function App() {
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
-  const [perms, setPerms] = useState([]);
+  const [perms, setPerms] = useState(null);
+
+
+  const [lots, setLots] = useState([]);
+
+  useEffect(() => {
+    if (date && time && perms) {
+      const queryParams = new URLSearchParams({
+        date: date.format("YYYY-MM-DD"), 
+        time: time.format("HH:mm"),
+      });
+  
+      perms.forEach((p) => queryParams.append("permissions", p.permit)); 
+  
+      axios
+        .get(`http://127.0.0.1:5000/?${queryParams.toString()}`)
+        .then((response) => {
+          setLots(response.data.Lots);
+          window.alert(response.data.Lots)
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [date, time, perms]);
+
+  if (!lots) return [];
 
   const handleSelectionChange = (selectionModel) => {
     const selectedPerms = selectionModel.map((id) => rows.find((row) => row.id === id));

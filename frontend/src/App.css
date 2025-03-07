@@ -34,7 +34,7 @@ form{
   background-color: whitesmoke;
   border-radius: 5px;
   border: 1px solid #a9aaad;
-  box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 10px 25px;
   z-index: 5;
 }
 
@@ -49,10 +49,6 @@ hr{
   border: 0;
   border-top: 2px solid #dddbda;
 
-}
-
-.center .button{
-  
 }
 
 .split{
