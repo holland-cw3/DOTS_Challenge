@@ -1,51 +1,37 @@
 import pandas as pd
-from datetime import datetime
-
-# for testing
-date = '3/6/2024'
-time = '12:00'
-permissions = ['Lot 1']
-
-date = pd.to_datetime(date)
-
-lots = []
-with open('backend/lots.txt', 'r') as file:
-    lines = file.read().splitlines() 
-    lots.extend(lines)
-# end testing data
+from datetime import datetime, timedelta
 
 def permFilter(date, time, lots, permissions):
 
-    if (len(permissions) == 0):
-        permissions.add('No Permits')
+    print("Day of the week?: ", date.weekday())
 
-    df_perms = pd.read_csv('backend/InfoChallenge Dataset_ DOTS - Lots & Permissions.csv')
+    permissions.append('Everyone')
+
+    lots = set(lots)
+
+    df_perms = pd.read_csv('InfoChallenge Dataset_ DOTS - Lots & Permissions.csv')
     
     # function to determine if time is outside of checked inerval
-    def is_time_outside_interval(time_str, start_time_str, end_time_str):
+    def is_time_inside_interval(time_str, start_time_str, end_time_str):
+        if (start_time == "00:00:00" == end_time_str):
+            return True
+
         # Convert strings to time objects
         time_obj = datetime.strptime(time_str, "%H:%M").time()
         start_time_obj = datetime.strptime(start_time_str, "%H:%M:%S").time()
         end_time_obj = datetime.strptime(end_time_str, "%H:%M:%S").time()
-        
+
+        if end_time_obj < start_time_obj:
+            end_time_obj = (datetime.strptime(end_time_str, "%H:%M:%S") + timedelta(days=1)).time()
+
         # Check if time is outside the interval
-        return time_obj < start_time_obj or time_obj > end_time_obj
-
-    # summer term start and end
-    # can we make this dynamic?
-    summer_start = datetime(2025, 5, 21)
-    summer_end = datetime(2025, 8, 26)
-
-    # If the users has permissions for any valid lot check if its summer
-    # If it is summer return all lots
-    if (len(permissions) > 0 and summer_start < date < summer_end):
-        return set(lots)
+        return time_obj >= start_time_obj and time_obj <= end_time_obj
 
     # use a set to store the allowed lots
     allowed_lots = set([])
 
-    # check what lots are valid with no permissions
-    # return them here
+    # use a set to store the lots that can't be used
+    restricted_lots = set([])
 
     # traverse the lots in the csv file, this is every lot
     # check the end boolean section of csv, to check if permission allow the lot
@@ -53,41 +39,52 @@ def permFilter(date, time, lots, permissions):
 
         # check if one of the lot permissions is allowed for this lot
         allowedToPark = False
-        for perm in permissions:
-            # check if lot is unrestricted
-            if row['Enforcement Days'] != 'Always':
-                # save lot times
-                start_time = row['Start Time - Daily']
-                end_time = row['End Time - Daily']
-                # check when lot is enforced
-                if row['Enforcement Days'] == 'Weekdays':
-                    # if lot is enforced on weekdays and its a weekend or outisde the enforcement time, parking is allowed
-                    if date.weekday() > 5 or (date.weekday() < 5 and is_time_outside_interval(time, start_time, end_time)):
-                        allowedToPark = True
-                else:
-                    # if lot is enforced on weekends and its a weekday or outisde the enforcement time, parking is allowed
-                    if date.weekday() < 5 or (date.weekday() > 5 and is_time_outside_interval(time, start_time, end_time)):
-                        allowedToPark = True
-            # if it is currently a restricted time only add the lot if you have permissions for it
-            if (not allowedToPark):
+
+        blockedFromLot = False
+
+        if row['Permits Type (Category)'] == 'Metered Parking':
+            allowedToPark = True
+
+        # save lot times
+        start_time = row['Start Time - Daily']
+        end_time = row['End Time - Daily']
+        # check when lot is enforced
+        if row['Enforcement Days'] == 'Weekdays':
+            # if lot is enforced on weekdays and its inside the rule time check if parking is allowed
+            if date.weekday() < 5 and is_time_inside_interval(time, start_time, end_time):
+                for perm in permissions:
+                    if row[perm] == 1.0:
+                        allowed_lots.add(row['Parking Lot / Zone Name'])
+                        if (row['Parking Lot / Zone Name'] in restricted_lots):
+                            restricted_lots.remove(row['Parking Lot / Zone Name'])
+                    else:
+                        if (not row['Parking Lot / Zone Name'] in allowed_lots):
+                            restricted_lots.add(row['Parking Lot / Zone Name'])
+            elif row['Posted Restrictions'] == "Unrestricted after 4PM":
+                allowedToPark = True
+        elif row['Enforcement Days'] == 'Weekends':
+            # if lot is enforced on weekends and its inside the rule time check if parking is allowed
+            if date.weekday() >= 5 and is_time_inside_interval(time, start_time, end_time):
+                for perm in permissions:
+                    if row[perm] == 1.0:
+                        allowed_lots.add(row['Parking Lot / Zone Name'])
+                        if (row['Parking Lot / Zone Name'] in restricted_lots):
+                            restricted_lots.remove(row['Parking Lot / Zone Name'])
+                    else:
+                        if (not row['Parking Lot / Zone Name'] in allowed_lots):
+                            restricted_lots.add(row['Parking Lot / Zone Name'])
+        else:
+            # rule always applys
+            for perm in permissions:
                 if row[perm] == 1.0:
-                    allowedToPark = True
+                    allowed_lots.add(row['Parking Lot / Zone Name'])
+                    if (row['Parking Lot / Zone Name'] in restricted_lots):
+                        restricted_lots.remove(row['Parking Lot / Zone Name'])
+                else:
+                    if (not row['Parking Lot / Zone Name'] in allowed_lots):
+                        restricted_lots.add(row['Parking Lot / Zone Name'])
 
-
-        # if permissions are valid for this lot, add it to allowed
-        if (allowedToPark):
-            allowed_lots.add(row['Parking Lot / Zone Name'])
-
-        # due to multiple entires a lot may be allowed from one rule but not another
-        # if there is a rule that means you cant park in the lot, remove it from set
-        if (not allowedToPark and (row['Parking Lot / Zone Name'] in allowed_lots)):
-            allowed_lots.remove(row['Parking Lot / Zone Name'])
-    
-    return allowed_lots
-
-final_lots = permFilter(date, time, lots, permissions)
-
-print(len(final_lots))
-
-for lot in final_lots:
-    print(lot)
+    if date.weekday() >= 5 or not is_time_inside_interval(time, "7:00:01", "15:59:59"):
+        return lots - restricted_lots
+    else:
+        return allowed_lots

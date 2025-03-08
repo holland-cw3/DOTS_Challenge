@@ -1,0 +1,176 @@
+[
+    { "code": "7A", "amount": "$100.00", "description": "Public Safety" },
+    {
+      "code": "7B",
+      "amount": "$300.00",
+      "description":
+        "Illegal display and/or receipt of permit or campus registered license plate"
+    },
+    {
+      "code": "7C",
+      "amount": "$300.00",
+      "description": "Illegally parked in disabled space/transfer area"
+    },
+    {
+      "code": "7D",
+      "amount": "$85.00",
+      "description": "Illegally parked in a Courier permit parking space"
+    },
+    {
+      "code": "7E",
+      "amount": "$85.00",
+      "description": "Parked in other than assigned area"
+    },
+    {
+      "code": "7F",
+      "amount": "$15.00",
+      "description": "Parked outside of control lines"
+    },
+    {
+      "code": "7G",
+      "amount": "$85.00",
+      "description": "Illegally parked in violation of posted DOTS signage"
+    },
+    {
+      "code": "7H",
+      "amount": "$45.00",
+      "description": "Expired parking meter/pay station"
+    },
+    {
+      "code": "7I",
+      "amount": "$150.00",
+      "description": "Illegally parked in a fire lane"
+    },
+    {
+      "code": "7J",
+      "amount": "$85.00",
+      "description": "Illegally parked in a Service permit-only space"
+    },
+    {
+      "code": "7K",
+      "amount": "$85.00",
+      "description": "Illegally parked in a restricted lot"
+    },
+    {
+      "code": "7L",
+      "amount": "$170.00",
+      "description":
+        "More than one vehicle per registrant on campus at the same time (fine per vehicle)"
+    },
+    {
+      "code": "7M",
+      "amount": "$50.00",
+      "description":
+        "Permit or campus registered license plate improperly displayed"
+    },
+    {
+      "code": "7N",
+      "amount": "$300.00",
+      "description": "Illegally entering a controlled lot"
+    },
+    {
+      "code": "7P",
+      "amount": "$500.00",
+      "description": "Illegal use of State-issued disabled permit"
+    },
+    {
+      "code": "7R",
+      "amount": "$300.00",
+      "description":
+        "Fraudulent use of documents/registration/validation or pin codes"
+    },
+    {
+      "code": "7S",
+      "amount": "$85.00",
+      "description": "Athletics Terrapin Club Violation"
+    },
+    { "code": "RV", "amount": "$100.00", "description": "Towing - Relocation Fee" },
+    { "code": "TV", "amount": "$150.00", "description": "Towing - Impounding Fee" },
+    { "code": "7A", "amount": "$100.00", "description": "Public Safety" },
+    {
+      "code": "7B",
+      "amount": "$300.00",
+      "description":
+        "Illegal display and/or receipt of permit or campus registered license plate"
+    },
+    {
+      "code": "7C",
+      "amount": "$300.00",
+      "description": "Illegally parked in disabled space/transfer area"
+    },
+    {
+      "code": "7D",
+      "amount": "$85.00",
+      "description": "Illegally parked in a Courier permit parking space"
+    },
+    {
+      "code": "7E",
+      "amount": "$85.00",
+      "description": "Parked in other than assigned area"
+    },
+    {
+      "code": "7F",
+      "amount": "$15.00",
+      "description": "Parked outside of control lines"
+    },
+    {
+      "code": "7G",
+      "amount": "$85.00",
+      "description": "Illegally parked in violation of posted DOTS signage"
+    },
+    {
+      "code": "7H",
+      "amount": "$45.00",
+      "description": "Expired parking meter/pay station"
+    },
+    {
+      "code": "7I",
+      "amount": "$150.00",
+      "description": "Illegally parked in a fire lane"
+    },
+    {
+      "code": "7J",
+      "amount": "$85.00",
+      "description": "Illegally parked in a Service permit-only space"
+    },
+    {
+      "code": "7K",
+      "amount": "$85.00",
+      "description": "Illegally parked in a restricted lot"
+    },
+    {
+      "code": "7L",
+      "amount": "$170.00",
+      "description":
+        "More than one vehicle per registrant on campus at the same time (fine per vehicle)"
+    },
+    {
+      "code": "7M",
+      "amount": "$50.00",
+      "description":
+        "Permit or campus registered license plate improperly displayed"
+    },
+    {
+      "code": "7N",
+      "amount": "$300.00",
+      "description": "Illegally entering a controlled lot"
+    },
+    {
+      "code": "7P",
+      "amount": "$500.00",
+      "description": "Illegal use of State-issued disabled permit"
+    },
+    {
+      "code": "7R",
+      "amount": "$300.00",
+      "description":
+        "Fraudulent use of documents/registration/validation or pin codes"
+    },
+    {
+      "code": "7S",
+      "amount": "$85.00",
+      "description": "Athletics Terrapin Club Violation"
+    },
+    { "code": "RV", "amount": "$100.00", "description": "Towing - Relocation Fee" },
+    { "code": "TV", "amount": "$150.00", "description": "Towing - Impounding Fee" }
+  ]
