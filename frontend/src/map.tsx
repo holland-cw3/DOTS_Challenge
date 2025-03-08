@@ -21,7 +21,7 @@ const MyComponent: React.FC<Props> = ({ lots }) => {
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <APIProvider apiKey="AIzaSyAwAvjnjdwbdVNWZEFrAt9iXbjt_UTtoIc">
+      <APIProvider apiKey="process.env.GMAPS">
         <Map
           center={{ lat: 38.9888, lng: -76.948 }} 
           zoom={15.2}
