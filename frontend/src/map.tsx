@@ -8,30 +8,36 @@ import {
 } from "@vis.gl/react-google-maps";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import type { Marker } from "@googlemaps/markerclusterer";
-import React from 'react';
-import { useEffect, useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import polka from "./data/polka";
 
-const MyComponent: React.FC = () => {
+type Props = {
+  lots: string[];  // Array of lot names to filter by
+};
+
+const MyComponent: React.FC<Props> = ({ lots }) => {
+  // Filter the polka array based on the lots names
+  const filteredPolka = polka.filter(p => lots.includes(p.name));
+
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <APIProvider apiKey='AIzaSyAwAvjnjdwbdVNWZEFrAt9iXbjt_UTtoIc'>
+      <APIProvider apiKey="AIzaSyAwAvjnjdwbdVNWZEFrAt9iXbjt_UTtoIc">
         <Map
           center={{ lat: 38.9888, lng: -76.948 }} 
           zoom={15.2}
-          mapId='dff3354deffa427c'
+          mapId="dff3354deffa427c"
         >
-          <Markers points={polka} />
+          <Markers points={filteredPolka} />
         </Map>
       </APIProvider>
     </div>
   );
-}
+};
 
 type Point = google.maps.LatLngLiteral & { key: string };
-type Props = { points: Point[] };
+type MarkersProps = { points: Point[] };
 
-const Markers = ({ points }: Props) => {
+const Markers = ({ points }: MarkersProps) => {
   const map = useMap();
   const [markers, setMarkers] = useState<{ [key: string]: Marker }>({});
   const clusterer = useRef<MarkerClusterer | null>(null);

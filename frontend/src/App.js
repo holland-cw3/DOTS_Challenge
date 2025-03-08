@@ -313,7 +313,7 @@ export default function App() {
         </div>
 
       </div>
-      <Map className="map-container" />
+      <Map className="map-container" lots={lots}/>
 
     </div>
   );
