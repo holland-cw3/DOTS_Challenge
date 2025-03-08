@@ -1,13 +1,5 @@
 "use client";
 
-// Declare process.env for TypeScript
-declare const process: {
-  env: {
-    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string;
-    NEXT_PUBLIC_MAP_ID: string;
-  };
-};
-
 import {
   APIProvider,
   Map,
@@ -20,14 +12,14 @@ import React from 'react';
 import { useEffect, useState, useRef } from "react";
 import polka from "./data/polka";
 
-export default function Intro() {
+const MyComponent: React.FC = () => {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+      <APIProvider apiKey='AIzaSyAwAvjnjdwbdVNWZEFrAt9iXbjt_UTtoIc'>
         <Map
-          center={{ lat: 38.98, lng: 76.94 }} // Center of UMD
-          zoom={10}
-          mapId={process.env.NEXT_PUBLIC_MAP_ID}
+          center={{ lat: 38.9888, lng: -76.948 }} 
+          zoom={15.2}
+          mapId='dff3354deffa427c'
         >
           <Markers points={polka} />
         </Map>
@@ -85,3 +77,5 @@ const Markers = ({ points }: Props) => {
     </>
   );
 };
+
+export default MyComponent;

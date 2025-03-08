@@ -13,6 +13,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Modal, Box, List, ListItem, ListItemText } from "@mui/material";
 
+import Map from './map.tsx'
+
 import parkingFines from './fines.json'
 
 const style = {
@@ -309,7 +311,10 @@ export default function App() {
             </div>
           </form>
         </div>
+
       </div>
+      <Map className="map-container" />
+
     </div>
   );
 }

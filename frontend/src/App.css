@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-body{
-  background-image: url('map.png');
-  background-size: cover;
-}
-
 form{
   display: flex;
   flex-direction: column;
@@ -16,6 +11,20 @@ form{
 .subSearch{
   margin-top: 2.5vh;
 }
+
+/* CSS for map */
+.map-container {
+  position: relative;
+  height: 100vh; /* Full height */
+  width: 100%;
+  z-index: 1; /* Ensure it's above other content */
+}
+
+/* Ensure modal is above everything else */
+.modal {
+  z-index: 1000; /* Modal is on top of everything */
+}
+
 
 .center{
   display: flex;

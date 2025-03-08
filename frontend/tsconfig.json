@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",                     // Set the ECMAScript target version (for compatibility)
+    "lib": ["dom", "esnext"],             // Include the standard JavaScript library and DOM types
+    "jsx": "react-jsx",                  // Use the new JSX transform (React 17+)
+    "module": "esnext",                   // Module code generation method
+    "moduleResolution": "node",           // Module resolution strategy
+    "allowJs": true,                      // Allow JavaScript files in your TypeScript project
+    "checkJs": false,                     // Disable error checking in JavaScript files
+    "skipLibCheck": true,                 // Skip type checking of declaration files for faster compilation
+    "esModuleInterop": true,              // Enables compatibility for ES modules and CommonJS modules
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+    "noEmit": true,                       // Disable output generation (useful when running `tsc` with `--watch` mode)
+    "isolatedModules": true               // Ensure that each file can be transpiled independently
+  },
+  "include": [
+    "src/**/*"                            // Include all TypeScript and JSX/TSX files in the src folder
+  ],
+  "exclude": [
+    "node_modules"                        // Exclude the node_modules folder
+  ]
+}
