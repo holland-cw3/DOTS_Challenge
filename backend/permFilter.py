@@ -1,20 +1,6 @@
 import pandas as pd
 from datetime import datetime, timedelta
 
-# for testing
-date = '3/4/2025'
-time = '16:00'
-permissions = ['Lot 1']
-
-date = pd.to_datetime(date)
-
-lots = []
-
-with open('backend/lots.txt', 'r') as file:
-    lines = file.read().splitlines() 
-    lots.extend(lines)
-# end testing data
-
 def permFilter(date, time, lots, permissions):
 
     print("Day of the week?: ", date.weekday())
@@ -23,7 +9,7 @@ def permFilter(date, time, lots, permissions):
 
     lots = set(lots)
 
-    df_perms = pd.read_csv('backend/InfoChallenge Dataset_ DOTS - Lots & Permissions.csv')
+    df_perms = pd.read_csv('InfoChallenge Dataset_ DOTS - Lots & Permissions.csv')
     
     # function to determine if time is outside of checked inerval
     def is_time_inside_interval(time_str, start_time_str, end_time_str):
@@ -102,12 +88,3 @@ def permFilter(date, time, lots, permissions):
         return lots - restricted_lots
     else:
         return allowed_lots
-
-
-# For testing:
-final_lots = permFilter(date, time, lots, permissions)
-
-print(len(final_lots))
-
-for lot in final_lots:
-    print(lot)
