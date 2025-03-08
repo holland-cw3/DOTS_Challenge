@@ -4,21 +4,12 @@ import pandas as pd
 from specialFilter import specialFilter
 from semesterFilter import semesterFilter
 from flask_cors import CORS
-
-
-# from permFilter import permFilter
-
-date = '1/1/2024'
-time = '03:00'
-permissions = []
-
-date = pd.to_datetime(date)
+from permFilter import permFilter
 
 lots = []
 with open('lots.txt', 'r') as file:
     lines = file.read().splitlines() 
     lots.extend(lines) 
-
 
 def filter (date, time, lots, permissions):
     lots = specialFilter(date, lots)
@@ -26,14 +17,13 @@ def filter (date, time, lots, permissions):
     if perms == False:
         print(lots)
         return lots
-    # else:
-        # filter permissions
-        # lots = permFilter(date, time, lots, permissions)
+    else:
+        lots = permFilter(date, time, lots, permissions)
     return lots
 
 
 app = Flask(__name__)
-CORS(app)  # This will allow ALL origins (localhost, 127.0.0.1, etc.)
+CORS(app)  
 api = Api(app)
 
 class GetItems(Resource):
@@ -43,9 +33,13 @@ class GetItems(Resource):
         permissions = request.args.getlist('permissions')  
         
         date = pd.to_datetime(date)
+        time = pd.to_datetime(time).strftime('%H:%M')
       
         filtered_lots = filter(date, time, lots, permissions)
-        
+
+        if isinstance(filtered_lots, set):
+            filtered_lots = list(filtered_lots)
+                    
         return {'Lots': filtered_lots}
 
 api.add_resource(GetItems, '/')
