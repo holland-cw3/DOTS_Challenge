@@ -10,6 +10,7 @@ could park. This project was originally intended to make use of AI/ML, however t
 of the problem led us to determine that an algorithmic solution was a better approach.
 
 ![image](https://github.com/user-attachments/assets/9fd85c61-7381-4241-b340-4dc9070c99d3)
+
 _General Structure of our Algorithm_
 
 Our algorithm resulted in 0 false positives across 50 test cases provided by UMD's department of transportation, meaning users
