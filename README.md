@@ -1,6 +1,4 @@
 # PolkaDOTS
-
-
 # The Problem
 The University of Maryland Department of Transportation Services (DOTS) provides a full range of parking and transportation services to a diverse community of more than 50,000 students, faculty and staff in the Greater College Park area. Services include Shuttle-UM, parking management, transportation demand management, and other programs. The current system is not user friendly (in the form of a complicated PDF), and does not take into account special events (i.e. sporting events, and construction), and updates very consistently. We wanted to determine a solution that would allow visitors to accurately understand where they are allowed to park based on ever evolving restrictions.
 
@@ -26,5 +24,15 @@ a map, signifying where a user may park (note the blue dots signify locations th
 
 # Backend
 Our backend & algorithm was built with Python, Pandas, and Flask. 
+
+# Contributors
+- Caleb Holland:
+  - Frontend: User Input Form 
+  - Backend: Special Events Filtering and Flask Set-up
+- Benjamin Johnson:
+  - Frontend: Google Maps Integration (TypeScript, React)
+  - Backend: Data Cleaning
+- Evan Masiello:
+  -  Backend: Permissions Filtering
 
 
