@@ -1,2 +1,10 @@
-# Team 25044
-Caleb Holland, Benjamin Johnson, Evan Masiello
+# # PolkaDOTS
+# Problem
+
+# Our Solution
+
+
+# Frontend
+
+
+# Backend
